@@ -1,36 +1,15 @@
 {{template "base" .}}
 
 {{define "content"}}
-<div id="main-carousel" class="carousel slide" data-ride="carousel">
-    <div id="main-carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="10000">
-                <img src="/static/images/outside.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-interval="10000">
-                <img src="/static/images/woman-laptop.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-interval="10000">
-                <img src="/static/images/tray.png" class="d-block w-100" alt="...">
+   <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="/static/images/two-bed-room.jpg" class="img-fluid
+                    img-thumbnail mx-auto d-block room-image mt-4" alt="room image">
             </div>
         </div>
-        <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only"></span>
-        </a>
-        <a class="carousel-control-next" href="#main-carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only"></span>
-        </a>
-        <ol class="carousel-indicators">
-            <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#main-carousel" data-slide-to="1"></li>
-            <li data-target="#main-carousel" data-slide-to="2"></li>
-        </ol>
-    </div>
 
-    <div class="container">
-        <h1 class="text-center mt-3"><b>Добро пожаловать в Уютный причал!!!</b></h1>
+        <h1 class="text-center mt-3"><b>Номер с двумя кроватями в гостинице Уютный причал</b></h1>
         <p class="text-center mt-3">
             Добро пожаловать в нашу уютную гостиницу! Мы предлагаем комфортное проживание, изысканные блюда и
             безупречный сервис. У нас вы сможете отдохнуть после долгого дня, насладиться тишиной и спокойствием, а
@@ -55,5 +34,4 @@
             </div>
         </div>
     </div>
-
-    {{end}}
+{{end}}

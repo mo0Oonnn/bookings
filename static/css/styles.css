@@ -14,3 +14,7 @@
 .notie-container {
     box-shadow: none;
 }
+
+.datapicker {
+    z-index: 10000;
+}
