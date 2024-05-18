@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 
 	"github.com/justinas/nosurf"
-	"github.com/mo0Oonnn/bookings/pkg/config"
-	"github.com/mo0Oonnn/bookings/pkg/models"
+	"github.com/mo0Oonnn/bookings/internal/config"
+	"github.com/mo0Oonnn/bookings/internal/models"
 )
 
 var functions = template.FuncMap{}
@@ -61,7 +61,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 		fmt.Println("page is currently", name)
 
-		ts, err := template.New(name).Funcs(functions).ParseFiles(page)
+		tc, err := template.New(name).Funcs(functions).ParseFiles(page)
 		if err != nil {
 			return myCache, err
 		}
@@ -72,12 +72,12 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 		}
 
 		if len(matches) > 0 {
-			ts, err = ts.ParseGlob("./templates/*.layout.tmpl")
+			tc, err = tc.ParseGlob("./templates/*.layout.tmpl")
 			if err != nil {
 				return myCache, err
 			}
 		}
-		myCache[name] = ts
+		myCache[name] = tc
 	}
 	return myCache, nil
 }

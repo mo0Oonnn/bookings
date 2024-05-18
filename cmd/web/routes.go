@@ -5,12 +5,13 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/mo0Oonnn/bookings/pkg/handlers"
+	"github.com/mo0Oonnn/bookings/internal/handlers"
 )
 
 func routes() http.Handler {
 	mux := chi.NewMux()
 
+	mux.Use(middleware.Logger)
 	mux.Use(middleware.Recoverer)
 	mux.Use(NoSurf)
 	mux.Use(SessionLoad)
