@@ -1,12 +1,11 @@
 package handlers
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/mo0Oonnn/bookings/internal/config"
+	"github.com/mo0Oonnn/bookings/internal/forms"
 	"github.com/mo0Oonnn/bookings/internal/models"
 	"github.com/mo0Oonnn/bookings/internal/render"
 )
@@ -54,7 +53,13 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 // Reservation renders the make a reservation page and displays form
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make_reservation.page.tmpl", &models.TemplateData{
+		Form: forms.New(nil),
+	})
+}
+
+// PostReservation handles the posting of a reservation form
+func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 }
 
 // SingleRoom renders the room page
@@ -89,27 +94,6 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 	room := r.Form.Get("room")
 
 	w.Write([]byte(fmt.Sprintf("Дата въезда: %s, дата выезда: %s, выбранный номер: %s", start, end, room)))
-}
-
-type jsonResponse struct {
-	OK      bool   `json:"ok"`
-	Message string `json:"message"`
-}
-
-// AvailabilityJSON handles request for availability and send JSON response
-func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
-	resp := jsonResponse{
-		OK:      true,
-		Message: "Available!!!",
-	}
-
-	out, err := json.MarshalIndent(resp, "", "     ")
-	if err != nil {
-		log.Println(err)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(out)
 }
 
 // Contact renders the contact page
