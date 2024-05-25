@@ -1,9 +1,8 @@
-.my-footer {
+.footer {
     height: 5em;
-    background-color: #343a40;
+    color: #FFFFFF;
     margin-top: 1.5em;
     padding: 1em;
-    color: #FFFFFF;
     font-size: 80%;
 }
 
@@ -15,6 +14,32 @@
     box-shadow: none;
 }
 
-.datapicker {
+.datepicker {
     z-index: 10000;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+}
+
+p {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.btn {
+    font-weight: 700;
+}
+
+.container-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inc {
+    border-color: rgba(0, 123, 255, 0.2);
+    color: rgb(0, 123, 255);
 }

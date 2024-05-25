@@ -1,15 +1,18 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
 	"time"
 
-	"github.com/alexedwards/scs/v2"
 	"github.com/mo0Oonnn/bookings/internal/config"
 	"github.com/mo0Oonnn/bookings/internal/handlers"
+	"github.com/mo0Oonnn/bookings/internal/models"
 	"github.com/mo0Oonnn/bookings/internal/render"
+
+	"github.com/alexedwards/scs/v2"
 )
 
 const portNumber = ":8080"
@@ -19,6 +22,8 @@ var session *scs.SessionManager
 
 // main is the main application module
 func main() {
+	gob.Register(models.Reservation{})
+
 	app.InProduction = false
 
 	session = scs.New()
@@ -29,18 +34,15 @@ func main() {
 
 	app.Session = session
 
-	tc, err := render.CreateTemplateCache()
-	if err != nil {
-		log.Fatal(err)
-	}
+	tc := render.CreateTemplateCache()
 
 	app.TemplateCache = tc
-	app.UseCache = true
+	app.UseCache = false
 
 	repo := handlers.NewRepo(&app)
-	handlers.NewHandlers(repo)
+	handlers.SetRepo(repo)
 
-	render.NewTemplates(&app)
+	render.SetConfig(&app)
 
 	srv := http.Server{
 		Addr:    portNumber,
@@ -49,6 +51,6 @@ func main() {
 
 	fmt.Printf("Starting application on port %s\n", portNumber)
 
-	err = srv.ListenAndServe()
+	err := srv.ListenAndServe()
 	log.Fatal(err)
 }

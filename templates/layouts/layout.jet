@@ -1,65 +1,70 @@
-{{define "base"}}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My nice page</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker-bs4.min.css">
-
+        href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker-bs5.min.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
+    <title>Уютный причал</title>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Hotel</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false">
+            <a class="navbar-brand" href="/"><img src="/static/images/icon.png" alt="Hotel"
+                    style="width: 50px; height: 50px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/about">О нас</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Проживание
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/single-room">Одноместный</a>
-                            <a class="dropdown-item" href="/double-bed-room">Стандартный номер с двухместной
-                                кроватью</a>
-                            <a class="dropdown-item" href="/two-bed-room">Стандартный номер с двумя кроватями</a>
-                            <a class="dropdown-item" href="/family-room">Семейный номер</a>
-                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Контакты</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Проживание
+                        </a>
+                        <ul class="nav-item dropdown-menu">
+                            <li><a class="dropdown-item" href="/single-room">Одноместный</a></li>
+                            <li><a class="dropdown-item" href="/double-bed-room">Стандартный номер с двухместной
+                                    кроватью</a></li>
+                            <li><a class="dropdown-item" href="/two-bed-room">Стандартный номер с двумя кроватями</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/family-room">Семейный номер</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/search-availability">Забронировать сейчас</a>
+                        <a class="nav-link" href="/search-availability">Найти свободные номера</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/make-reservation">Забронировать сейчас</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    {{block "content" .}}
+    {{yield body()}}
 
-    {{end}}
-
-    <div class="navbar my-footer">
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark footer">
         <div class="col">
             Left
         </div>
@@ -72,26 +77,15 @@
             Right
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/notie"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-
-
-    {{block "js" .}}
-
-    {{end}}
 
     <script>
         let attention = Prompt();
@@ -113,10 +107,19 @@
             }, false);
         })();
 
+        if ("{{error}}" != "") {
+            notify("{{error}}", "error")
+        } else if ("{{success}}" != "") {
+            notify("{{success}}", "success")
+        } else if ("{{warning}}" != "") {
+            notify("{{warning}}", "warning")
+        }
+
         const elem = document.getElementById('reservation-dates');
-        const rangepicker = new DateRangePicker(elem, {
-            format: "dd-mm-yyyy"
-        });
+        const rp = new DateRangePicker(elem, {
+            format: 'dd-mm-yyyy',
+            showOnFocus: true,
+        })
 
 
         function notify(msg, msgType) {
@@ -233,8 +236,44 @@
         }
 
         $(".phone").mask("+7 (999)-999-99-99");
+
+        var inputCount = function (el) {
+            var min = el.attr('min') || false,
+                max = el.attr('max') || false;
+            dec = el.prev(),
+                inc = el.next();
+
+            el.each(function () {
+                init($(this));
+            });
+
+            function init(el) {
+                dec.on('click', decrement);
+                inc.on('click', increment);
+                function decrement() {
+                    var value = el[0].value;
+                    value--;
+
+                    if (!min || value >= min) {
+                        el[0].value = value;
+                    }
+                }
+                function increment() {
+                    var value = el[0].value;
+                    value++;
+
+                    if (!max || value <= max) {
+                        el[0].value = value++;
+                    }
+                }
+                return false;
+            }
+        }
+
+        $('.inputCount').each(function () {
+            inputCount($(this));
+        });
     </script>
 </body>
 
 </html>
-{{end}}
